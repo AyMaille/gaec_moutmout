@@ -21,9 +21,9 @@ User.create!(
 )
 
 3.times do |i|
-  puts "creating field #{i+1}"
+  puts "creating field #{i + 1}"
   Field.create!(
-    name: "maynet-#{i+1}"
+    name: "maynet-#{i + 1}"
   )
 
   puts "creating ownings between field and user"

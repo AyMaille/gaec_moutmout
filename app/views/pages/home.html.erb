@@ -1,11 +1,7 @@
 <div class="container">
-  <h1 class="d-flex justify-content-center mt-3">Bienvenue sur le Gaec moutmout</h1>
+  <h1 class="d-flex justify-content-center mt-3">Bienvenue au Gaec moutmout</h1>
   <p class="d-flex justify-content-center">Ensemble, comptons les moutons</p>
   <% @fields.each do |field| %>
-    <li class="list-group list-group-flush">
-      <ul class="list-group-item">
-        <%= link_to "#{field.name}", field_path(field) %>
-      </ul>
-    </li>
+    <%= button_to "#{field.name}", field_path(field), id: "#{field.id}", method: "get", class:"main-btns" %>
   <% end %>
 </div>

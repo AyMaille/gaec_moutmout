@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  get 'fields/index'
+  get 'fields/show'
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :fields, only: [:index, :show] do
+  resources :fields, only: [:show] do
     resources :sheeps
-
   end
 end

@@ -3,7 +3,9 @@
   <p class="d-flex justify-content-center">Ensemble, comptons les moutons</p>
   <% @fields.each do |field| %>
     <li class="list-group list-group-flush">
-      <ul class="list-group-item"><%= "#{field.name}/n" %></ul>
+      <ul class="list-group-item">
+        <%= link_to "#{field.name}", field_path(field) %>
+      </ul>
     </li>
   <% end %>
 </div>

@@ -1,0 +1,15 @@
+<div class="container">
+  <h1><%= "#{@field.name}" %></h1>
+  <p>listes des moutons</p>
+  <li>
+    <ol>
+      <% @sheeps.each do |sheep|%>
+        <li class="list-group list-group-flush">
+          <ul class="list-group-item">
+            <%= sheep.id %>
+          </ul>
+        </li>
+      <% end %>
+    </ol>
+  </li>
+</div>

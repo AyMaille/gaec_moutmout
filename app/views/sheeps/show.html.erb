@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="ml-3">
+    <h1 class="mt-3"><%= "mouton n°#{@sheep.id}" %></h1>
+    <h2 class="pt-3"><%= @sheep.genre %></h2>
+    <h2 class="pt-3"><%= "#{@sheep.age} mois" %></h2>
+    <h2 class="pt-3"><%= "#{@sheep.weight} Kg" %></h2>
+  </div>
+    <%= link_to "retour", :back, class:"rtrn-btn" %>
+</div>

@@ -2,6 +2,7 @@
   <h1><%= "#{@field.name}" %></h1>
   <p>listes des moutons</p>
       <% @sheeps.each do |sheep|%>
-            <%= button_to "mouton n°#{sheep.id}", field_path(sheep), class:"main-btns" %>
+            <%= button_to "mouton n°#{sheep.id}", sheeps_show_path(sheep), :id => "#{sheep.id}", method:"get", class:"main-btns" %>
       <% end %>
+    <%= link_to "retour", root_path , class:"rtrn-btn"%>
 </div>

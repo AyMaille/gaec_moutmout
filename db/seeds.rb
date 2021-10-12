@@ -20,6 +20,23 @@ User.create!(
   password: "123123"
 )
 
+puts "creating seller"
+vendeur = Field.create!(
+    name: "vendeur"
+  )
+
+puts "creating mother0"
+mother_zero = Sheep.create!(
+  field: vendeur,
+  genre: "female",
+  age: 30,
+  weight: (30..40).to_a.sample,
+  pregnant: false,
+  expected_lambs: 0,
+  kind: "brebis",
+  mother_id: 1
+  )
+
 3.times do |i|
   puts "creating field #{i + 1}"
   Field.create!(
@@ -41,7 +58,8 @@ User.create!(
       weight: (30..40).to_a.sample,
       pregnant: false,
       expected_lambs: 0,
-      kind: ["bélier", "jeune", "brebis"].sample
+      kind: ["bélier", "jeune", "brebis"].sample,
+      mother_id: mother_zero.id
     )
   end
 end

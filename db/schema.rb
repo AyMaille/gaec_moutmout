@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_093844) do
+ActiveRecord::Schema.define(version: 2021_10_12_130942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2021_10_12_093844) do
     t.boolean "pregnant"
     t.integer "expected_lambs"
     t.string "kind"
+    t.integer "mother_id"
     t.index ["field_id"], name: "index_sheep_on_field_id"
   end
 

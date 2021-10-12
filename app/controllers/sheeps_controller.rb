@@ -27,11 +27,12 @@ class SheepsController < ApplicationController
     @sheep.age = 0
     @sheep.pregnant = false
     @sheep.expected_lambs = 0
+    @sheep.save!
   end
 
   private
 
   def sheep_params
-    params.require(:sheep).permit(:genre, :weight, :kind)
+    params.require(:sheep).permit(:genre, :weight, :mother_id)
   end
 end

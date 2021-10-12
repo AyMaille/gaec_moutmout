@@ -1,6 +1,7 @@
 <div class="container">
   <h1><%= "#{@field.name}" %></h1>
   <p>listes des moutons</p>
+      <%= button_to "Naissance", new_field_sheep_path(@field), method:"get", class:"new-sheep-btns" %>
       <% @sheeps.each do |sheep|%>
         <%= button_to "mouton n°#{sheep.id}", sheeps_show_path(sheep), :id => "#{sheep.id}", method:"get", class:"main-btns" %>
       <% end %>

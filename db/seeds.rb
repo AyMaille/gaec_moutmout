@@ -41,7 +41,7 @@ User.create!(
       weight: (30..40).to_a.sample,
       pregnant: false,
       expected_lambs: 0,
-      kind: ["ram", "mother", "lamb"].sample
+      kind: ["bélier", "jeune", "brebis"].sample
     )
   end
 end

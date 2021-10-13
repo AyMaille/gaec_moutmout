@@ -1,0 +1,51 @@
+.info-sheep-card {
+  margin-top: 16px;
+  height: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.sheep-name {
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  width: 160px;
+  height: 32px;
+  top: 16px;
+  left: 16px;
+}
+
+.sheep-age {
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  width: 160px;
+  top: 16px;
+  right: -72px;
+}
+
+.sheep-genre {
+  font-size: 24px;
+  position: absolute;
+  left: 16px;
+  top: 64px;
+}
+
+.sheep-weight {
+  font-size: 24px;
+  position: absolute;
+  left: 16px;
+  top: 96px;
+}
+
+.sheep-status {
+  font-size: 24px;
+  position: absolute;
+  top: 128px;
+  left: 16px;
+}

@@ -23,7 +23,7 @@ class SheepsController < ApplicationController
   def new
     @field = Field.find(params[:field_id])
     @sheep = Sheep.new
-    @sheeps = Sheep.where(field_id: params[:field_id]).select { |sheep| sheep.kind == "brebis" }
+    @sheeps = Sheep.where(field_id: params[:field_id]).select { |sheep| sheep.kind == "sheep" }
   end
 
   def create
@@ -36,6 +36,9 @@ class SheepsController < ApplicationController
     @sheep.status = "alive"
     @sheep.save!
     redirect_to new_field_sheep_path
+  end
+
+  def update
   end
 
   private

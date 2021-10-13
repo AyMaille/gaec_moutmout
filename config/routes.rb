@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :fields, only: [:show] do
     resources :sheeps, only: %i[new create]
   end
-  resources :sheeps, only: %i[index show]
+  resources :sheeps, only: %i[index show update]
 end

@@ -8,7 +8,7 @@ class Sheep < ApplicationRecord
   def translated_status
     case self.status
     when "alive"
-      "vivant"
+      ""
     when "ill"
       "malade"
     when "sold"

@@ -34,7 +34,8 @@ mother_zero = Sheep.create!(
   pregnant: false,
   expected_lambs: 0,
   kind: "brebis",
-  mother_id: 1
+  mother_id: 1,
+  status: "alive"
   )
 
 5.times do |i|
@@ -59,7 +60,8 @@ mother_zero = Sheep.create!(
       pregnant: false,
       expected_lambs: 0,
       kind: ["bélier", "jeune", "brebis"].sample,
-      mother_id: mother_zero.id
+      mother_id: mother_zero.id,
+      status: "alive"
     )
   end
 end

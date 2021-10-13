@@ -33,6 +33,7 @@ class SheepsController < ApplicationController
     @sheep.pregnant = false
     @sheep.expected_lambs = 0
     @sheep.field = Field.find(params[:field_id])
+    @sheep.status = "alive"
     @sheep.save!
     redirect_to new_field_sheep_path
   end

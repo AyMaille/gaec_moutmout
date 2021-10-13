@@ -1,6 +1,7 @@
 <div class="container">
   <h1>Tous les moutons</h1>
   <% @sheeps.each do |sheep|%>
-    <%= button_to "mouton n°#{sheep.id}", sheeps_show_path(sheep), :id => "#{sheep.id}", method:"get", class:"main-btns" %>
+    <%= button_to "mouton n°#{sheep.id}", sheep_path(sheep.id), :id => "#{sheep.id}", method:"get", class:"main-btns" %>
+    <%= render "shared/gender_sticker", sheep: sheep %>
   <% end %>
 </div>

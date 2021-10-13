@@ -37,7 +37,7 @@ mother_zero = Sheep.create!(
   mother_id: 1
   )
 
-3.times do |i|
+5.times do |i|
   puts "creating field #{i + 1}"
   Field.create!(
     name: "maynet-#{i + 1}"
@@ -49,8 +49,8 @@ mother_zero = Sheep.create!(
     user_id: User.last.id
   )
 
-  puts "adding 3 sheeps to the field"
-  3.times do
+  puts "adding 10 sheeps to the field"
+  10.times do
     Sheep.create!(
       field: Field.last,
       genre: ["male", "female"].sample,

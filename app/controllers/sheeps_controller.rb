@@ -1,24 +1,29 @@
 class SheepsController < ApplicationController
   def index
-    fields = Field.all
+    # @sheeps = []
+    # fields.each do |field|
+    #   field.ownings.each do |owning|
+    #     if owning.user == current_user
+    #       Sheep.where(field_id: field.id).each { |owner_field| @sheeps << owner_field }
+    #     end
+    #   end
+    # end
     @sheeps = []
-    fields.each do |field|
-      field.ownings.each do |owning|
-        if owning.user == current_user
-          Sheep.where(field_id: field.id).each { |owner_field| @sheeps << owner_field }
-        end
+    Field.all.each do |field|
+      field.ownings.each do |field_owning|
+        field.sheeps.each { |sheep| @sheeps << sheep } if current_user.ownings.include?(field_owning)
       end
     end
   end
 
   def show
-    @sheep = Sheep.find(params[:format])
+    @sheep = Sheep.find(params[:id])
   end
 
   def new
+    @field = Field.find(params[:field_id])
     @sheep = Sheep.new
-    @sheeps = Sheep.where(field_id: params[:field_id])
-    @sheeps = @sheeps.select { |sheep| sheep.kind == "brebis" }
+    @sheeps = Sheep.where(field_id: params[:field_id]).select { |sheep| sheep.kind == "brebis" }
   end
 
   def create

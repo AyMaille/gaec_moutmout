@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Lots#new</h1>
+  <p>Find me in app/views/lots/new.html.erb</p>
+
+  <%= form_for @lot, url: lots_path do |f| %>
+    <div class="form-group">
+        <%= f.label :file, "Upload CSV File" %>
+        <%= f.file_field :file, class:"form-control-file", required: true %>
+    </div>
+    <%= f.submit "Ok", class:"pr-3 pl-3 pt-1 pb-1" %>
+  <% end %>
+</div>

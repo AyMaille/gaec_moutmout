@@ -17,4 +17,14 @@ class Sheep < ApplicationRecord
       "mort"
     end
   end
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      if sheep.find_by(name: row[0]).nil?
+        sheep = sheep.new()
+      sheep = sheep.find_by(name: row[0])
+      sheep.weight = row[15]
+      sheep.update
+    end
+  end
 end

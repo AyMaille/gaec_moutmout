@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_14_114532) do
+ActiveRecord::Schema.define(version: 2021_10_14_130116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_10_14_114532) do
     t.integer "mother_id"
     t.string "status"
     t.bigint "lot_id"
+    t.integer "electronic_id"
     t.index ["field_id"], name: "index_sheep_on_field_id"
     t.index ["lot_id"], name: "index_sheep_on_lot_id"
   end

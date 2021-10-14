@@ -27,13 +27,18 @@ class SheepsController < ApplicationController
   end
 
   def create
+    @field = Field.find(params[:field_id])
     @sheep = Sheep.new(sheep_params)
-    @sheep.age = 0
     @sheep.field = Field.find(params[:field_id])
     @sheep.electronic_id = Sheep.last.electronic_id.to_i + 1
-    @sheep.save!
-    flash[:notice] = "Jeune n°#{@sheep.electronic_id} ajouté"
-    redirect_to new_field_sheep_path
+    if @sheep.save
+      flash[:notice] = "Jeune n°#{@sheep.electronic_id} ajouté"
+      redirect_to new_field_sheep_path
+    else
+      @sheeps = Sheep.where(field_id: @field).select { |sheep| sheep.kind == "sheep" }
+      flash.now[:error] = "Erreur, champ manquants"
+      render :new
+    end
   end
 
   def update

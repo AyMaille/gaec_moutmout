@@ -40,5 +40,6 @@ class Sheep < ApplicationRecord
     self.pregnant ||= false
     self.expected_lambs ||= 0
     self.status ||= "alive"
+    self.age ||= 0
   end
 end

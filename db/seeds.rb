@@ -10,6 +10,8 @@ puts "deleting ownings"
 Owning.delete_all
 puts "deleting sheeps"
 Sheep.delete_all
+puts "deleting lots"
+Lot.delete_all
 puts "deleting users"
 User.delete_all
 puts "deleting fields"
@@ -25,6 +27,10 @@ vendeur = Field.create!(
   name: "vendeur"
 )
 
+  Lot.create!(
+    field_id: Field.last.id,
+  )
+
 puts "creating mother0"
 mother_zero = Sheep.create!(
   field: vendeur,
@@ -35,7 +41,9 @@ mother_zero = Sheep.create!(
   expected_lambs: 0,
   kind: "sheep",
   mother_id: 1,
-  status: "alive"
+  status: "alive",
+  lot_id: Lot.last.id,
+  electronic_id: (999999999999888..999999999999999).to_a.sample
 )
 
 5.times do |i|
@@ -50,6 +58,10 @@ mother_zero = Sheep.create!(
     user_id: User.last.id
   )
 
+  Lot.create!(
+    field_id: Field.last.id,
+  )
+
   puts "adding 10 sheeps to the field"
   10.times do
     Sheep.create!(
@@ -61,7 +73,9 @@ mother_zero = Sheep.create!(
       expected_lambs: 0,
       kind: ["ram", "lamb", "sheep"].sample,
       mother_id: mother_zero.id,
-      status: "alive"
+      status: "alive",
+      lot_id: Lot.last.id,
+      electronic_id: (999999999999888..999999999999999).to_a.sample
     )
   end
 end

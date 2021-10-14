@@ -20,11 +20,11 @@ class Sheep < ApplicationRecord
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
-      if sheep.find_by(name: row[0]).nil?
+      if Sheep.find_by(electronic_id: row[0]).nil?
         sheep = Sheep.new(electronic_id: row[0], weight: row[15])
         sheep.save!
       else
-        sheep = sheep.find_by(name: row[0])
+        sheep = Sheep.find_by(electronic_id: row[0])
         sheep.weight = row[15]
         sheep.update!
       end

@@ -4,6 +4,7 @@
 
   <%= form_for @lot, url: lots_path do |f| %>
     <div class="form-group">
+        <%= f.input :field_id, collection: , label: "parcelle?" %>
         <%= f.label :file, "Upload CSV File" %>
         <%= f.file_field :file, class:"form-control-file", required: true %>
     </div>

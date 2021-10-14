@@ -8,9 +8,9 @@ class LotsController < ApplicationController
   end
 
   def create
-    # lot_name = regex   params[:lot][:filename???]
-    Sheep.import(params[:lot][:file])
-    flash[:notice] = "Lot # téléchargé avec succès"
-    redirect_to field_path() #=> or where you want
+    field = Field.find_by(name: params[:lot][:field])
+    Sheep.import(params[:lot][:file], field)
+    flash[:notice] = "Lot #{Lot.last.id} téléchargé avec succès" #=> interpolation to changed
+    redirect_to field_path(field)
   end
 end

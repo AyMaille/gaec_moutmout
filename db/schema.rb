@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_13_145915) do
+ActiveRecord::Schema.define(version: 2021_10_14_114532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 2021_10_13_145915) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lots", force: :cascade do |t|
+    t.bigint "field_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["field_id"], name: "index_lots_on_field_id"
   end
 
   create_table "ownings", force: :cascade do |t|
@@ -52,7 +59,9 @@ ActiveRecord::Schema.define(version: 2021_10_13_145915) do
     t.string "kind"
     t.integer "mother_id"
     t.string "status"
+    t.bigint "lot_id"
     t.index ["field_id"], name: "index_sheep_on_field_id"
+    t.index ["lot_id"], name: "index_sheep_on_lot_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,7 +77,9 @@ ActiveRecord::Schema.define(version: 2021_10_13_145915) do
   end
 
   add_foreign_key "acts", "sheep"
+  add_foreign_key "lots", "fields"
   add_foreign_key "ownings", "fields"
   add_foreign_key "ownings", "users"
   add_foreign_key "sheep", "fields"
+  add_foreign_key "sheep", "lots"
 end

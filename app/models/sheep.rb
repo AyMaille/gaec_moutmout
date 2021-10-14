@@ -5,6 +5,8 @@ class Sheep < ApplicationRecord
   validates :kind, acceptance: { accept: ["ram", "sheep", "lamb"] }
   validates :status, acceptance: { accept: ["alive", "ill", "sold", "dead"] }
 
+  after_initialize :default_values
+
   def translated_status
     case self.status
     when "alive"
@@ -29,5 +31,14 @@ class Sheep < ApplicationRecord
         sheep.update!
       end
     end
+  end
+
+  private
+
+  def default_values
+    self.kind ||= "lamb"
+    self.pregnant ||= false
+    self.expected_lambs ||= 0
+    self.status ||= "alive"
   end
 end

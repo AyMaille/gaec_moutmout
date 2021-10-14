@@ -28,13 +28,11 @@ class SheepsController < ApplicationController
 
   def create
     @sheep = Sheep.new(sheep_params)
-    @sheep.kind = "jeune"
     @sheep.age = 0
-    @sheep.pregnant = false
-    @sheep.expected_lambs = 0
     @sheep.field = Field.find(params[:field_id])
-    @sheep.status = "alive"
+    @sheep.electronic_id = Sheep.last.electronic_id.to_i + 1
     @sheep.save!
+    flash[:notice] = "Jeune n°#{@sheep.electronic_id} ajouté"
     redirect_to new_field_sheep_path
   end
 

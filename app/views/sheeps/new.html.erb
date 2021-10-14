@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Déclarer une nouvelle naissance</h1>
   <%= simple_form_for [@field, @sheep], url: field_sheeps_path do |f| %>
-    <%= f.input :genre, collection: ["mâle", "femelle"], label: "Sexe" %>
+    <%= f.input :genre, collection: ["male", "female"], label: "Sexe" %>
     <%= f.input :weight, selected: 4, collection: 0..50, label: "Poids (Kg)" %>
     <%= f.input :mother_id, collection: @sheeps.map! { |sheep| sheep.id }, label: "Mère n°"%>
     <%= f.submit "Valider", class: "btn btn-primary" %>

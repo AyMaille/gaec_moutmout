@@ -2,6 +2,10 @@ require 'csv'
 
 
 class LotsController < ApplicationController
+  def index
+    @lots = Lot.all
+  end
+
   def new
     @lot = Lot.new
     @fields = Field.own_by_user(current_user)

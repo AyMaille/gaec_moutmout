@@ -17,23 +17,33 @@ User.delete_all
 puts "deleting fields"
 Field.delete_all
 
+puts "creating seller"
+vendeur_user = User.create(
+  email: "vendeur@gmail.com",
+  password: 123123
+)
+
+puts "creating user moutmout"
 User.create!(
   email: "moutmout@gmail.com",
   password: "123123"
 )
 
-puts "creating seller"
-vendeur = Field.create!(
+puts "creating seller field"
+vendeur_field = Field.create!(
   name: "vendeur"
 )
 
+puts "creating lot 'première achat'"
   Lot.create!(
     field_id: Field.last.id,
+    user_id:  vendeur_user,
+    name: "premier achat"
   )
 
 puts "creating mother0"
 mother_zero = Sheep.create!(
-  field: vendeur,
+  field: vendeur_field,
   genre: "female",
   age: 30,
   weight: (30..40).to_a.sample,
@@ -60,6 +70,8 @@ mother_zero = Sheep.create!(
 
   Lot.create!(
     field_id: Field.last.id,
+    user_id: User.last.id,
+    name: "Lot n°#{i + 1}"
   )
 
   puts "adding 10 sheeps to the field"

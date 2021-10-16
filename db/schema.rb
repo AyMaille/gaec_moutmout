@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_14_131951) do
+ActiveRecord::Schema.define(version: 2021_10_16_093833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,10 @@ ActiveRecord::Schema.define(version: 2021_10_14_131951) do
     t.bigint "field_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.bigint "user_id"
     t.index ["field_id"], name: "index_lots_on_field_id"
+    t.index ["user_id"], name: "index_lots_on_user_id"
   end
 
   create_table "ownings", force: :cascade do |t|
@@ -79,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_10_14_131951) do
 
   add_foreign_key "acts", "sheep"
   add_foreign_key "lots", "fields"
+  add_foreign_key "lots", "users"
   add_foreign_key "ownings", "fields"
   add_foreign_key "ownings", "users"
   add_foreign_key "sheep", "fields"

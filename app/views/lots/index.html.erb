@@ -1,8 +1,10 @@
 <div class="container">
-  <p>listes des lots</p>
-      <%= button_to "Nouveau lot", new_lot_path, method:"get", class:"new-sheep-btns" %>
-      <% @lots.each do |lot|%>
-        <%= button_to "Lot n°#{lot.id}", lot_path(lot.id), method:"get", class:"main-btns" %>
-      <% end %>
-    <%= link_to "retour", root_path , class:"rtrn-btn"%>
+  <H1>Lots</H1>
+  <div class="new-top-btns">
+    <%= button_to "Nouveau lot", new_lot_path, method:"get", class:"btn-success" %>
+  </div>
+  <% @lots.each do |lot|%>
+    <%= button_to "#{lot.name}", lot_path(lot.id), method:"get", class:"main-btns" %>
+  <% end %>
+  <%= link_to "retour", root_path , class:"rtrn-btn"%>
 </div>

@@ -1,7 +1,9 @@
 <div class="container">
   <h1><%= "#{@field.name}" %></h1>
   <p>listes des moutons</p>
-      <%= button_to "Naissance", new_field_sheep_path(@field), method:"get", class:"new-sheep-btns" %>
+    <div class="new-top-btns">
+      <%= button_to "Naissance", new_field_sheep_path(@field), method:"get", class:"btn-success pl-3 pr-3" %>
+    </div>
       <% @sheeps.each do |sheep|%>
         <%= button_to "mouton n°#{sheep.electronic_id}", sheep_path(sheep.id), method:"get", class:"main-btns" %>
         <%= render "shared/gender_sticker", sheep: sheep %>

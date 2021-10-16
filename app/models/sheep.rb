@@ -27,8 +27,7 @@ class Sheep < ApplicationRecord
         sheep.save!
       else
         sheep = Sheep.find_by(electronic_id: row[0])
-        sheep.weight = row[15]
-        sheep.update!
+        sheep.update!(weight: row[15])
       end
     end
   end

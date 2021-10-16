@@ -1,13 +1,5 @@
 class SheepsController < ApplicationController
   def index
-    # @sheeps = []
-    # fields.each do |field|
-    #   field.ownings.each do |owning|
-    #     if owning.user == current_user
-    #       Sheep.where(field_id: field.id).each { |owner_field| @sheeps << owner_field }
-    #     end
-    #   end
-    # end
     @sheeps = []
     Field.all.each do |field|
       field.ownings.each do |field_owning|
@@ -29,7 +21,7 @@ class SheepsController < ApplicationController
   def create
     @field = Field.find(params[:field_id])
     @sheep = Sheep.new(sheep_params)
-    @sheep.field = Field.find(params[:field_id])
+    @sheep.field = @field
     @sheep.electronic_id = Sheep.last.electronic_id.to_i + 1
     if @sheep.save
       flash[:notice] = "Jeune n°#{@sheep.electronic_id} ajouté"

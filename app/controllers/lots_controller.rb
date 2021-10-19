@@ -8,6 +8,7 @@ class LotsController < ApplicationController
 
   def show
     @lot = Lot.find(params[:id])
+    @sheeps = Sheep.where(lot_id: @lot)
   end
 
   def new

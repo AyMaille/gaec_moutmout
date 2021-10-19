@@ -2,14 +2,5 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
-    @fields = Field.own_by_user(current_user)
   end
 end
-
-# def self.own_by_user
-#   Field.all.each do |field|
-#     field.ownings.each do |owning|
-#       @fields << Field.find(field.id) if owning.user == current_user
-#     end
-#   end
-# end

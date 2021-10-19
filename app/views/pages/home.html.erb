@@ -1,7 +1,9 @@
 <div class="container">
-  <h1 class="d-flex justify-content-center mt-3">Bienvenue au Gaec moutmout</h1>
+  <h1 class="d-flex mt-3">Bienvenue au Gaec moutmout</h1>
   <p class="d-flex justify-content-center">Ensemble, comptons les moutons</p>
-  <% @fields.each do |field| %>
-    <%= button_to "#{field.name}", field_path(field), id: "#{field.id}", method: "get", class:"main-btns" %>
-  <% end %>
+
+  <%= button_to "Mes lots", lots_path, method:"get", class:"main-btns"%>
+  <%= button_to "Mes parcelles", fields_path, method:"get", class:"main-btns"%>
+  <%= button_to "Mes moutons", sheeps_path, method:"get", class:"main-btns"%>
+
 </div>

@@ -1,4 +1,9 @@
-<div class="container"></div>
-<% @sheeps.each do |sheep| %>
-<%= sheep.electronic_id %>
-<% end %>
+<div class="container">
+  <h2 class="mt-3 mb-3">
+    <%= "#{@lot.name}" %>
+  </h2>
+  <% @sheeps.each do |sheep| %>
+  <%= button_to "mouton n°#{sheep.electronic_id}", sheep_path(sheep.id), method:"get", class:"main-btns" %>
+  <%= render "shared/gender_sticker", sheep: sheep %>
+  <% end %>
+</div>

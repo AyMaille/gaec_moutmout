@@ -1,5 +1,8 @@
 <div class="container">
   <h1 class="mb-3 mt-3">Mes parcelles</h1>
+  <div class="new-top-btns">
+    <%= button_to "Parcelles +", new_field_path, method:"get", class:"btn-success pl-3 pr-3" %>
+  </div>
   <% @fields.each do |field| %>
     <%= button_to "#{field.name}", field_path(field), id: "#{field.id}", method: "get", class:"main-btns" %>
   <% end %>

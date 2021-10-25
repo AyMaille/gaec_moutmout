@@ -3,7 +3,12 @@
   <div class="new-top-btns">
     <%= button_to "Parcelles +", new_field_path, method:"get", class:"btn-success pl-3 pr-3" %>
   </div>
+
   <div id="map">
+  </div>
+  <div class="calculation-box">
+    <p>Click the map to draw a polygon.</p>
+    <div id="calculated-area"></div>
   </div>
   <% @fields.each do |field| %>
     <%= button_to "#{field.name}", field_path(field), id: "#{field.id}", method: "get", class:"main-btns" %>

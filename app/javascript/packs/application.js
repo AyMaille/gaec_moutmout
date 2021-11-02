@@ -31,6 +31,7 @@ import { map } from '../components/map';
 import { draw } from '../components/map';
 import { updateArea } from '../components/map';
 
+
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   map;

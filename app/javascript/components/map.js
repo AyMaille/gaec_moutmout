@@ -19,17 +19,20 @@ const draw = new MapboxDraw({
   },
   // Set mapbox-gl-draw to draw by default.
   // The user does not have to click the polygon control button first.
-  defaultMode: 'draw_polygon'
+  // defaultMode: 'draw_polygon',
 });
+
 map.addControl(draw);
 
 map.on('draw.create', updateArea);
 map.on('draw.delete', updateArea);
 map.on('draw.update', updateArea);
+map.on('touchend', updateArea);
 
 function updateArea(e) {
   const data = draw.getAll();
   const answer = document.getElementById('calculated-area');
+  console.log(data);
   if (data.features.length > 0) {
     const area = turf.area(data);
     // Restrict the area to 2 decimal points.
@@ -41,5 +44,16 @@ function updateArea(e) {
       alert('Click the map to draw a polygon.');
   }
 }
+
+window.addEventListener("load", () => {
+  const element = document.querySelector("#new-field-draw");
+  element.addEventListener("ajax:success", (event) => {
+    const [_data, _status, xhr] = event.detail;
+    console.log(xhr.responseText);
+  });
+  element.addEventListener("ajax:error", () => {
+    element.insertAdjacentHTML("beforeend", "<p>ERROR</p>");
+  });
+});
 
 export { map, draw, updateArea }

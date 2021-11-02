@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_16_093833) do
+ActiveRecord::Schema.define(version: 2021_11_02_151100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2021_10_16_093833) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["sheep_id"], name: "index_acts_on_sheep_id"
+  end
+
+  create_table "corner_positions", force: :cascade do |t|
+    t.bigint "field_id", null: false
+    t.float "long"
+    t.float "lat"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["field_id"], name: "index_corner_positions_on_field_id"
   end
 
   create_table "fields", force: :cascade do |t|
@@ -81,6 +90,7 @@ ActiveRecord::Schema.define(version: 2021_10_16_093833) do
   end
 
   add_foreign_key "acts", "sheep"
+  add_foreign_key "corner_positions", "fields"
   add_foreign_key "lots", "fields"
   add_foreign_key "lots", "users"
   add_foreign_key "ownings", "fields"

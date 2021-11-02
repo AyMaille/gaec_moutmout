@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   end
   resources :sheeps, only: %i[index show update]
   resources :lots, only: %i[index show new create]
+  resources :corner_positions, only: [:create]
 end

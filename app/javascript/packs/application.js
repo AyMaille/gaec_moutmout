@@ -30,6 +30,8 @@ import "bootstrap";
 import { map } from '../components/map';
 import { draw } from '../components/map';
 import { updateArea } from '../components/map';
+import { create_corners_positions } from '../components/map';
+
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -37,4 +39,5 @@ document.addEventListener('turbolinks:load', () => {
   map;
   draw;
   updateArea;
+  create_corners_positions;
 });

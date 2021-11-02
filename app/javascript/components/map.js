@@ -45,7 +45,7 @@ function updateArea(e) {
   }
 }
 
-window.addEventListener("load", () => {
+function create_corners_positions() {
   const element = document.querySelector("#new-field-draw");
   element.addEventListener("ajax:success", (event) => {
     const [_data, _status, xhr] = event.detail;
@@ -54,6 +54,6 @@ window.addEventListener("load", () => {
   element.addEventListener("ajax:error", () => {
     element.insertAdjacentHTML("beforeend", "<p>ERROR</p>");
   });
-});
+};
 
-export { map, draw, updateArea }
+export { map, draw, updateArea, create_corners_positions }

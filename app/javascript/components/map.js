@@ -47,13 +47,13 @@ function updateArea(e) {
 
 function create_corners_positions() {
   const element = document.querySelector("#new-field-draw");
-  element.addEventListener("ajax:success", (event) => {
-    const [_data, _status, xhr] = event.detail;
-    console.log(xhr.responseText);
+  element.addEventListener("confirm", () => {
+    console.log("hey")
   });
-  element.addEventListener("ajax:error", () => {
-    element.insertAdjacentHTML("beforeend", "<p>ERROR</p>");
-  });
+  // element.addEventListener("ajax:success", (event) => {
+  //   const [_data, _status, xhr] = event.detail;
+  //   console.log(xhr.responseText);
+  // });
 };
 
 export { map, draw, updateArea, create_corners_positions }

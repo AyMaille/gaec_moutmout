@@ -9,9 +9,7 @@
   </div>
   <div id="map">
   </div>
-  <%= form_with(model: @corner_position, id: "new-field-draw", local: false) do |form| %>
-  <% form.submit %>
-  <% end %>
+  <%= button_to "lier les coordonnées", @corner_position, id: "new-field-draw", remote: true %>
   <%# <div class="calculation-box">
     <p>Click the map to draw a polygon.</p>
     <div id="calculated-area"></div>

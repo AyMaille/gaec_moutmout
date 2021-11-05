@@ -29,8 +29,6 @@ import "bootstrap";
 // Internal imports, e.g:
 import { map } from '../components/map';
 import { draw } from '../components/map';
-import { updateArea } from '../components/map';
-import { create_corners_positions } from '../components/map';
 
 
 
@@ -38,6 +36,4 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   map;
   draw;
-  updateArea;
-  create_corners_positions;
 });

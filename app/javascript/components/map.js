@@ -24,36 +24,49 @@ const draw = new MapboxDraw({
 
 map.addControl(draw);
 
-map.on('draw.create', updateArea);
-map.on('draw.delete', updateArea);
-map.on('draw.update', updateArea);
-map.on('touchend', updateArea);
+// map.on('draw.create', updateArea);
+// map.on('draw.delete', updateArea);
+// map.on('draw.update', updateArea);
+// map.on('touchend', updateArea);
 
-function updateArea(e) {
-  const data = draw.getAll();
-  const answer = document.getElementById('calculated-area');
-  console.log(data);
-  if (data.features.length > 0) {
-    const area = turf.area(data);
-    // Restrict the area to 2 decimal points.
-    const rounded_area = Math.round(area * 100) / 100;
-    answer.innerHTML = `<p><strong>${rounded_area}</strong></p><p>square meters</p>`;
-  } else {
-    answer.innerHTML = '';
-    if (e.type !== 'draw.delete')
-      alert('Click the map to draw a polygon.');
-  }
-}
+// function updateArea(e) {
+//   const data = draw.getAll();
+//   const answer = document.getElementById('calculated-area');
+//   if (data.features.length > 0) {
+//     const area = turf.area(data);
+//     // Restrict the area to 2 decimal points.
+//     const rounded_area = Math.round(area * 100) / 100;
+//     answer.innerHTML = `<p><strong>${rounded_area}</strong></p><p>square meters</p>`;
+//   } else {
+//     answer.innerHTML = '';
+//     if (e.type !== 'draw.delete')
+//       alert('Click the map to draw a polygon.');
+//   }
+// }
 
-function create_corners_positions() {
-  const element = document.querySelector("#new-field-draw");
-  element.addEventListener("confirm", () => {
-    console.log("hey")
-  });
+const element = document.querySelector("#new-field-draw");
+element.addEventListener("click", (event) => {
+  event.preventDefault();
+  const drawData = draw.getAll();
+  const drawPoints = drawData.features[0].geometry.coordinates[0];
+  drawPoints.forEach((point) => {
+    fetch("http://localhost:3000/corner_positions", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        field_id: 105,
+        long: point[0],
+        lat: point[1]
+      })
+    })
+  })
+});
+
   // element.addEventListener("ajax:success", (event) => {
   //   const [_data, _status, xhr] = event.detail;
   //   console.log(xhr.responseText);
   // });
-};
 
-export { map, draw, updateArea, create_corners_positions }
+export { map, draw }

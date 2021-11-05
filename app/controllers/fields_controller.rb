@@ -1,6 +1,14 @@
 class FieldsController < ApplicationController
   def index
     @fields = Field.own_by_user(current_user)
+    @field_corners = []
+    @fields.each do |field|
+      unless CornerPosition.where(field: field).empty?
+        i = -1
+        @field_corners[i + 1] = []
+        @field_corners[i + 1].push(CornerPosition.where(field: field))
+      end
+    end
   end
 
   def show

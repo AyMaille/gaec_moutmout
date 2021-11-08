@@ -66,12 +66,30 @@ element.addEventListener("click", (event) => {
 
 const mapContainer = document.getElementById('map');
 let cornerPoints = JSON.parse(mapContainer.dataset.fields);
-cornerPoints.forEach((obj) => {
-  console.log(obj)
+let points = []
+cornerPoints[0].forEach((pointObj) => {
+  let point = turf.point([pointObj.long, pointObj.lat]);
+  points.push(point)
+  console.log(point)
+  // console.log(pointObj.long)
+  // console.log(pointObj.lat)
 });
-// cornerDisplay.dataset.fields.forEach((corner) => {
+let pointsCollection = turf.featureCollection(points);
+let polygonOnMap = turf.convex(pointsCollection)
 
-//   console.log(corner)
-// });
+map.on('load', () => {
+  map.addSource('field', {
+    "type": "geojson",
+    "data": polygonOnMap
+  });
+  map.addLayer({
+    "id": "field",
+    "source": "field",
+    "type": "fill",
+    "paint": {
+      "fill-color": "#35B912"
+    }
+  });
+});
 
 export { map, draw }

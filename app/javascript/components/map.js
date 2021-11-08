@@ -64,9 +64,14 @@ element.addEventListener("click", (event) => {
   })
 });
 
-  // element.addEventListener("ajax:success", (event) => {
-  //   const [_data, _status, xhr] = event.detail;
-  //   console.log(xhr.responseText);
-  // });
+const mapContainer = document.getElementById('map');
+let cornerPoints = JSON.parse(mapContainer.dataset.fields);
+cornerPoints.forEach((obj) => {
+  console.log(obj)
+});
+// cornerDisplay.dataset.fields.forEach((corner) => {
+
+//   console.log(corner)
+// });
 
 export { map, draw }

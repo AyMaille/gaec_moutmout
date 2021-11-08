@@ -24,26 +24,6 @@ const draw = new MapboxDraw({
 
 map.addControl(draw);
 
-// map.on('draw.create', updateArea);
-// map.on('draw.delete', updateArea);
-// map.on('draw.update', updateArea);
-// map.on('touchend', updateArea);
-
-// function updateArea(e) {
-//   const data = draw.getAll();
-//   const answer = document.getElementById('calculated-area');
-//   if (data.features.length > 0) {
-//     const area = turf.area(data);
-//     // Restrict the area to 2 decimal points.
-//     const rounded_area = Math.round(area * 100) / 100;
-//     answer.innerHTML = `<p><strong>${rounded_area}</strong></p><p>square meters</p>`;
-//   } else {
-//     answer.innerHTML = '';
-//     if (e.type !== 'draw.delete')
-//       alert('Click the map to draw a polygon.');
-//   }
-// }
-
 const element = document.querySelector("#new-field-draw");
 element.addEventListener("click", (event) => {
   event.preventDefault();
@@ -56,7 +36,7 @@ element.addEventListener("click", (event) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        field_id: 105,
+        field_id: 104,
         long: point[0],
         lat: point[1]
       })
@@ -65,31 +45,35 @@ element.addEventListener("click", (event) => {
 });
 
 const mapContainer = document.getElementById('map');
-let cornerPoints = JSON.parse(mapContainer.dataset.fields);
+let fieldPoints = JSON.parse(mapContainer.dataset.fields);
+console.log(fieldPoints)
 let points = []
-cornerPoints[0].forEach((pointObj) => {
-  let point = turf.point([pointObj.long, pointObj.lat]);
-  points.push(point)
-  console.log(point)
-  // console.log(pointObj.long)
-  // console.log(pointObj.lat)
-});
-let pointsCollection = turf.featureCollection(points);
-let polygonOnMap = turf.convex(pointsCollection)
+let i = 0
+fieldPoints.forEach((field) => {
+  field.forEach((pointObj) => {
+    let point = turf.point([pointObj.long, pointObj.lat]);
+    points.push(point)
+    // console.log(point)
+  });
 
-map.on('load', () => {
-  map.addSource('field', {
-    "type": "geojson",
-    "data": polygonOnMap
+  let pointsCollection = turf.featureCollection(points);
+  let polygonOnMap = turf.convex(pointsCollection)
+
+  map.on('load', () => {
+    map.addSource(`field ${i}`, {
+      "type": "geojson",
+      "data": polygonOnMap
+    });
+    map.addLayer({
+      "id": `field ${i}`,
+      "source": `field ${i}`,
+      "type": "fill",
+      "paint": {
+        "fill-color": "#35B912"
+      }
+    });
   });
-  map.addLayer({
-    "id": "field",
-    "source": "field",
-    "type": "fill",
-    "paint": {
-      "fill-color": "#35B912"
-    }
-  });
+  i ++
 });
 
 export { map, draw }

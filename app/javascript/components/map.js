@@ -44,12 +44,15 @@ element.addEventListener("click", (event) => {
   })
 });
 
+
+
 const mapContainer = document.getElementById('map');
 let fieldPoints = JSON.parse(mapContainer.dataset.fields);
 console.log(fieldPoints)
 let points = []
-let i = 0
+let i = 5
 fieldPoints.forEach((field) => {
+  i+=1
   field.forEach((pointObj) => {
     let point = turf.point([pointObj.long, pointObj.lat]);
     points.push(point)
@@ -60,20 +63,26 @@ fieldPoints.forEach((field) => {
   let polygonOnMap = turf.convex(pointsCollection)
 
   map.on('load', () => {
-    map.addSource(`field ${i}`, {
-      "type": "geojson",
-      "data": polygonOnMap
-    });
+    console.log(typeof map.getSource('fieldSource'))
+    if (typeof map.getSource('fieldSource') == undefined) {
+      map.addSource('fieldSource',{
+        type: 'geojson',
+        data: polygonOnMap
+      })
+    } else {
+      console.log(typeof map.getSource('fieldSource'))
+      map.getSource('fieldSource').setData(polygonOnMap)
+    };
+
     map.addLayer({
-      "id": `field ${i}`,
-      "source": `field ${i}`,
+      "id": 'fieldSource',
+      "source": 'fieldSource',
       "type": "fill",
       "paint": {
         "fill-color": "#35B912"
       }
     });
   });
-  i ++
 });
 
 export { map, draw }

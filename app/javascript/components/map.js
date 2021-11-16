@@ -50,9 +50,7 @@ const mapContainer = document.getElementById('map');
 let fieldPoints = JSON.parse(mapContainer.dataset.fields);
 console.log(fieldPoints)
 let points = []
-let i = 5
 fieldPoints.forEach((field) => {
-  i+=1
   field.forEach((pointObj) => {
     let point = turf.point([pointObj.long, pointObj.lat]);
     points.push(point)
@@ -63,15 +61,15 @@ fieldPoints.forEach((field) => {
   let polygonOnMap = turf.convex(pointsCollection)
 
   map.on('load', () => {
-    console.log(typeof map.getSource('fieldSource'))
-    if (typeof map.getSource('fieldSource') == undefined) {
-      map.addSource('fieldSource',{
+    console.log(typeof map.getSource('fieldSource')+'1')
+    if (typeof map.getSource('fieldSource') == "object") {
+      console.log(typeof map.getSource('fieldSource')+'2')
+      map.getSource('fieldSource').setData(polygonOnMap)
+  } else {
+      map.addSource('fieldSource', {
         type: 'geojson',
         data: polygonOnMap
       })
-    } else {
-      console.log(typeof map.getSource('fieldSource'))
-      map.getSource('fieldSource').setData(polygonOnMap)
     };
 
     map.addLayer({

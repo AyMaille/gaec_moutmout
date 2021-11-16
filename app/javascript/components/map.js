@@ -49,38 +49,49 @@ element.addEventListener("click", (event) => {
 const mapContainer = document.getElementById('map');
 let fieldPoints = JSON.parse(mapContainer.dataset.fields);
 console.log(fieldPoints)
-let points = []
+let fieldPointsArray = []
 fieldPoints.forEach((field) => {
-  field.forEach((pointObj) => {
-    let point = turf.point([pointObj.long, pointObj.lat]);
-    points.push(point)
-    // console.log(point)
+  fieldPoints = []
+  field.forEach( pointObj => {
+    fieldPoints.push([pointObj.long, pointObj.lat])
   });
+  fieldPointsArray.push(fieldPoints)
 
-  let pointsCollection = turf.featureCollection(points);
-  let polygonOnMap = turf.convex(pointsCollection)
+  // field.forEach((pointObj) => {
+  //   let point = turf.point([pointObj.long, pointObj.lat]);
+  //   points.push(point)
+  //   // console.log(point)
+  // });
 
-  map.on('load', () => {
-    console.log(typeof map.getSource('fieldSource')+'1')
-    if (typeof map.getSource('fieldSource') == "object") {
-      console.log(typeof map.getSource('fieldSource')+'2')
-      map.getSource('fieldSource').setData(polygonOnMap)
-  } else {
-      map.addSource('fieldSource', {
-        type: 'geojson',
-        data: polygonOnMap
-      })
-    };
+  // let pointsCollection = turf.featureCollection(points);
+  // console.log(pointsCollection)
+  // let  polygonFields = []
+  // polygonFields.push(pointsCollection)
+});
+let polygonOnMap = turf.multiPolygon(fieldPointsArray)
+console.log(polygonOnMap)
 
-    map.addLayer({
-      "id": 'fieldSource',
-      "source": 'fieldSource',
-      "type": "fill",
-      "paint": {
-        "fill-color": "#35B912"
-      }
-    });
+map.on('load', () => {
+//   console.log(typeof map.getSource('fieldSource')+'1')
+//   if (typeof map.getSource('fieldSource') == "object") {
+//     console.log(typeof map.getSource('fieldSource')+'2')
+//     map.getSource('fieldSource').setData(polygonOnMap)
+// } else {
+    map.addSource('fieldSource', {
+      type: 'geojson',
+      data: polygonOnMap
+    })
+  // };
+
+  map.addLayer({
+    "id": 'fields-layer',
+    "source": 'fieldSource',
+    "type": "fill",
+    "paint": {
+      "fill-color": "#35B912"
+    }
   });
 });
+
 
 export { map, draw }

@@ -48,50 +48,43 @@ element.addEventListener("click", (event) => {
 
 const mapContainer = document.getElementById('map');
 let fieldPoints = JSON.parse(mapContainer.dataset.fields);
-console.log(fieldPoints)
-let fieldPointsArray = []
+let fieldIdArray = []
 fieldPoints.forEach((field) => {
+  let fieldId = field[0].field_id
+  fieldIdArray.push(fieldId)
   fieldPoints = []
   field.forEach( pointObj => {
-    fieldPoints.push([pointObj.long, pointObj.lat])
+    let point = turf.point([pointObj.long, pointObj.lat]);
+    fieldPoints.push(point)
   });
-  fieldPointsArray.push(fieldPoints)
-
-  // field.forEach((pointObj) => {
-  //   let point = turf.point([pointObj.long, pointObj.lat]);
-  //   points.push(point)
-  //   // console.log(point)
-  // });
-
-  // let pointsCollection = turf.featureCollection(points);
-  // console.log(pointsCollection)
-  // let  polygonFields = []
-  // polygonFields.push(pointsCollection)
-});
-let polygonOnMap = turf.multiPolygon(fieldPointsArray)
-console.log(polygonOnMap)
-
-map.on('load', () => {
-//   console.log(typeof map.getSource('fieldSource')+'1')
-//   if (typeof map.getSource('fieldSource') == "object") {
-//     console.log(typeof map.getSource('fieldSource')+'2')
-//     map.getSource('fieldSource').setData(polygonOnMap)
-// } else {
-    map.addSource('fieldSource', {
+  let pointsCollection = turf.featureCollection(fieldPoints)
+  let feature = turf.convex(pointsCollection)
+  console.log(feature)
+  map.on('load', () => {
+    map.addSource(fieldId.toString(), {
       type: 'geojson',
-      data: polygonOnMap
-    })
-  // };
+      data: {
+        "type": "FeatureCollection",
+        "features": [{
+          "type": "Feature",
+          "properties": {},
+          "geometry": feature.geometry
+        }]
+      }
+    });
 
-  map.addLayer({
-    "id": 'fields-layer',
-    "source": 'fieldSource',
-    "type": "fill",
-    "paint": {
-      "fill-color": "#35B912"
-    }
+    map.addLayer({
+      "id": `fields${fieldId.toString()}-layer`,
+      'source': fieldId.toString(),
+      "type": "fill",
+      "paint": {
+        "fill-color": "#35B912",
+        'fill-opacity': 0.8
+      }
+    });
   });
 });
+
 
 
 export { map, draw }

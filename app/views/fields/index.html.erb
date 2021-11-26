@@ -7,7 +7,8 @@
   <div class="new-top-btns">
     <%= button_to "Parcelles +", new_field_path, method:"get", class:"btn-success pl-3 pr-3" %>
   </div>
-  <div id="map" data-fields=<%= @field_corners%>>
+  <%= render "shared/fields_popup" %>
+  <div id="map" data-field-corners=<%= @field_corners%> data-fields=<%= @fields_json_package%>>
   </div>
   <%= button_to "lier les coordonnées", @corner_position, id:"new-field-draw", remote: true %>
   <%# <div class="calculation-box">

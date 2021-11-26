@@ -7,6 +7,7 @@ class FieldsController < ApplicationController
         field_corners.push(CornerPosition.where(field: field))
       end
     end
+    @fields_json_package = @fields.to_json
     @field_corners = field_corners.to_json
   end
 

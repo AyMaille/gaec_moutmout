@@ -24,9 +24,12 @@ const draw = new MapboxDraw({
 
 map.addControl(draw);
 
+  // that block allow points drawing and saving with "lier les coordonnées" btn
 const element = document.querySelector("#new-field-draw");
 element.addEventListener("click", (event) => {
   event.preventDefault();
+  event.addEventListener('beforeinput', selectField());
+
   const drawData = draw.getAll();
   const drawPoints = drawData.features[0].geometry.coordinates[0];
   drawPoints.forEach((point) => {
@@ -44,10 +47,18 @@ element.addEventListener("click", (event) => {
   })
 });
 
+  // function to call fields json package and return a flash form to select one of them
+function selectField() {
+    document.getElementById("popupForm").style.display = "block";
 
+  // function closeForm() {
+  //   document.getElementById("popupForm").style.display = "none";
+  // }
+}
 
+  // block displays exsting polygons using all corner_positions objects
 const mapContainer = document.getElementById('map');
-let fieldPoints = JSON.parse(mapContainer.dataset.fields);
+let fieldPoints = JSON.parse(mapContainer.dataset.fieldCorners);
 let fieldIdArray = []
 fieldPoints.forEach((field) => {
   let fieldId = field[0].field_id
@@ -59,7 +70,7 @@ fieldPoints.forEach((field) => {
   });
   let pointsCollection = turf.featureCollection(fieldPoints)
   let feature = turf.convex(pointsCollection)
-  console.log(feature)
+  // console.log(feature)
   map.on('load', () => {
     map.addSource(fieldId.toString(), {
       type: 'geojson',

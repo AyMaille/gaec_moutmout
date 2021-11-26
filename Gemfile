@@ -34,6 +34,8 @@ gem 'bootstrap', '~> 5.1.0'
 
 gem 'devise'
 
+
+
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'

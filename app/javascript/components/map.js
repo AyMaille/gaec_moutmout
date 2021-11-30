@@ -21,15 +21,17 @@ const draw = new MapboxDraw({
   // The user does not have to click the polygon control button first.
   // defaultMode: 'draw_polygon',
 });
+const mapContainer = document.getElementById('map');
 
 map.addControl(draw);
 
   // that block allow points drawing and saving with "lier les coordonnées" btn
 const element = document.querySelector("#new-field-draw");
-element.addEventListener("click", (event) => {
+element.addEventListener("click", async (event) => {
   event.preventDefault();
-  event.addEventListener('beforeinput', selectField());
-
+  // event.addEventListener('beforeinput', selectField());
+  const fieldId = await selectField()
+  console.log("field_id inside field drawing", fieldId)
   const drawData = draw.getAll();
   const drawPoints = drawData.features[0].geometry.coordinates[0];
   drawPoints.forEach((point) => {
@@ -39,7 +41,7 @@ element.addEventListener("click", (event) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        field_id: 104,
+        field_id: fieldId,
         long: point[0],
         lat: point[1]
       })
@@ -47,17 +49,27 @@ element.addEventListener("click", (event) => {
   })
 });
 
-  // function to call fields json package and return a flash form to select one of them
+  // function to call fields json package and return a flash partial form to select one of them
 function selectField() {
+  return new Promise(resolve => {
     document.getElementById("popupForm").style.display = "block";
+    document.getElementById("popupForm").addEventListener("click", function (e) {
+      // e.target is the clicked element!
+      // If it was a list item
+      if (e.target && e.target.nodeName == "BUTTON") {
+        // List item found!  Output the ID!
+        console.log("Field ", e.target.id, " was clicked!");
+        document.getElementById("popupForm").style.display = "none";
+      }
+      let fieldId = e.target.id
+      console.log(fieldId)
+      resolve(fieldId)
+    });
+  })
 
-  // function closeForm() {
-  //   document.getElementById("popupForm").style.display = "none";
-  // }
 }
 
   // block displays exsting polygons using all corner_positions objects
-const mapContainer = document.getElementById('map');
 let fieldPoints = JSON.parse(mapContainer.dataset.fieldCorners);
 let fieldIdArray = []
 fieldPoints.forEach((field) => {

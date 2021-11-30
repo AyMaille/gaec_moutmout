@@ -1,6 +1,10 @@
 <div class="fieldsPopup">
   <div class="formPopup" id="popupForm">
-    <p> Hello world</p>
+    <% @fields.each do |field| %>
+      <button class="mt-3 ml-2 fieldNames" id="<%= field.id %>">
+        <%= field.name %>
+      </button>
+    <% end %>
     <%# <form action="/action_page.php" class="formContainer">
       <h2>Please Log in</h2>
       <label for="email">

@@ -5,6 +5,9 @@
   </div>
   <% @lots.each do |lot|%>
     <%= button_to "#{lot.name}", lot_path(lot.id), method:"get", class:"main-btns" %>
+      <div class="lot-position">
+        <%= lot.field.name %>
+      </div>
   <% end %>
   <%= link_to "retour", root_path , class:"rtrn-btn"%>
 </div>

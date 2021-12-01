@@ -28,4 +28,17 @@ class LotsController < ApplicationController
     @lot = Lot.find(params[:id])
     @fields = Field.own_by_user(current_user)
   end
+
+  def update
+    @lot = Lot.find(params[:id])
+    @lot.field_id = Field.find_by(name: params[:lot][:field_id]).id
+    @lot.save
+    redirect_to lots_path(@lot)
+  end
+
+  private
+
+  def lots_params
+    params.require(:lot).permit(:id)
+  end
 end

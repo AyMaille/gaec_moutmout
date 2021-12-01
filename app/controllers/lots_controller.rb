@@ -23,4 +23,9 @@ class LotsController < ApplicationController
     flash[:notice] = "Lot #{Lot.last.name} téléchargé avec succès" #=> interpolation to changed
     redirect_to field_path(field)
   end
+
+  def edit
+    @lot = Lot.find(params[:id])
+    @fields = Field.own_by_user(current_user)
+  end
 end

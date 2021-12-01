@@ -6,6 +6,6 @@ Rails.application.routes.draw do
     resources :sheeps, only: %i[new create]
   end
   resources :sheeps, only: %i[index show update]
-  resources :lots, only: %i[index show new create]
+  resources :lots, only: %i[index show new create edit update]
   resources :corner_positions, only: [:create]
 end

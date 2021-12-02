@@ -1,6 +1,5 @@
 require 'csv'
 
-
 class LotsController < ApplicationController
   def index
     @lots = Lot.where(user_id: current_user)

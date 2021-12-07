@@ -1,14 +1,60 @@
+.lot-btn{
+  position: relative;
+  width: 100%;
+  height: 100px;
+  text-align: left;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px;
+  align-items: center;
+}
+
+.lot-link {
+  width: 330px;
+  height: 100px;
+  padding: 10px;
+  text-align: left;
+  margin-bottom: 15px;
+  position: absolute;
+  top: 0px;
+  z-index: 9;
+  opacity: 0;
+}
+
 .lot-informations {
-  position: inherit;
+  width: 330px;
+  height: 100px;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+}
+
+.lot-name {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  overflow: hidden;
+  width: 115px;
+
 }
 
 .lot-position{
-  position: inherit;
-  left: 15px;
+  position: relative;
+  z-index: 5;
+  margin-left: 15px;
+  width: 100px;
+  opacity: 0.7;
 }
 
 .lot-sheep-number{
-  position: inherit;
-  bottom: 15px;
-  left: 15px;
+  position: relative;
+  margin-left: 15px;
+  z-index: 5;
+  text-align: center;
+  align-items: center;
+  opacity: 0.7;
 }

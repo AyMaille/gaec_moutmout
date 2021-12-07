@@ -3,17 +3,26 @@
   <div class="new-top-btns">
     <%= button_to "Nouveau lot", new_lot_path, method:"get", class:"btn-success" %>
   </div>
-  <% @lots.each do |lot|%>
-      <%= button_to "#{lot.name}", lot_path(lot.id), method:"get", class:"main-btns" %>
-      <div class="lot-informations">
-        <div class="lot-sheep-number">
-          <%= lot.sheeps.length %>
-        </div>
-        <div class="lot-position">
-          <%= lot.field.name %>
+    <% @lots.each do |lot|%>
+      <div class="lot-btn">
+        <%= button_to "#{lot.name}", lot_path(lot.id), method:"get", class:"lot-link" %>
+        <div class="lot-informations">
+          <div class="lot-name">
+            <%= render "shared/long_name_divider", name: lot.name, length: 9 %>
+          </div>
+          <div class="lot-position">
+            <%= lot.field.name %>
+          </div>
+          <div class="lot-sheep-number">
+            <% if lot.sheeps.length > 1 %>
+              <%= "#{lot.sheeps.length} moutons" %>
+            <% else %>
+              <%= "#{lot.sheeps.length} mouton" %>
+            <% end %>
+          </div>
         </div>
       </div>
-  <% end %>
+    <% end %>
   </div>
   <%= link_to "retour", root_path , class:"rtrn-btn"%>
 </div>

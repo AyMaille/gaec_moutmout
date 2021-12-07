@@ -1,0 +1,12 @@
+<%# locals to define --> name of the variable and length to not oversive %>
+<% if name.length > length %>
+  <% half = name.length / 2 + 1 %>
+  <%= name.first(half) %>
+    <% if name.length.odd? %>
+      <%= name.last( half + 1 ) %>
+    <% else %>
+      <%= name.last( half ) %>
+    <% end %>
+<% else %>
+  <%= name %>
+<% end %>

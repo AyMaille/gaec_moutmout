@@ -6,7 +6,14 @@
     <%= button_to "déplacer le lot", edit_lot_path(@lot), method:"get", class:"btn-success" %>
   </div>
   <% @sheeps.each do |sheep| %>
-  <%= button_to "mouton n°#{sheep.electronic_id}", sheep_path(sheep.id), method:"get", class:"main-btns" %>
-  <%= render "shared/gender_sticker", sheep: sheep %>
+  <div class="sheep-btns">
+        <%= button_to "", sheep_path(sheep.id), method:"get", class:"sheep-links" %>
+        <div class="sheep-informations">
+          <div class="sheep-names">
+            <%= "mouton n° #{sheep.electronic_id}" %>
+          </div>
+          <%= render "shared/gender_sticker", sheep: sheep %>
+        </div>
+      </div>
   <% end %>
 </div>

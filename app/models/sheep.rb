@@ -10,7 +10,7 @@ class Sheep < ApplicationRecord
   def translated_status
     case self.status
     when "alive"
-      ""
+      "RAS"
     when "ill"
       "malade"
     when "sold"

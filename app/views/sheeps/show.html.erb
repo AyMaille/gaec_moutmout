@@ -1,19 +1,20 @@
 <div class="container">
   <div class="info-sheep-card">
-    <h1 class="sheep-name">
+    <div class="sheep-name">
       <%= "mouton n°#{@sheep.electronic_id}" %>
-    </h1>
-    <h2 class="sheep-genre">
+    </div>
+    <div class="sheep-genre">
       <%= @sheep.genre == "female" ? "femelle" : "mâle" %>
-    </h2>
-    <h2 class="sheep-age">
-      <%= "#{@sheep.age} mois" %></h2>
-    <h2 class="sheep-weight">
+    </div>
+    <div class="sheep-age">
+      <%= "#{@sheep.age} mois" %>
+    </div>
+    <div class="sheep-weight">
       <%= "#{@sheep.weight} Kg" %>
-    </h2>
-    <h2 class="sheep-status">
-      <%= @sheep.translated_status %>
-    </h2>
+    </div>
+    <div class="sheep-status">
+      <%= "Status : #{@sheep.translated_status}" %>
+    </div>
   </div>
     <%= link_to "retour", :back, class:"rtrn-btn" %>
 </div>

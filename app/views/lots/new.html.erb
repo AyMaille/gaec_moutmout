@@ -1,4 +1,4 @@
-<div class="container">
+<div class="contain">
   <h1>Nouveau Lot</h1>
 
   <%= form_for @lot, url: lots_path do |f| %>
@@ -9,9 +9,9 @@
         <%= f.label "Parcelle", class:"mr-4" %>
         <%= f.select :field, collection: @fields.map! { |field| field.name } %>
         <br>
-        <%= f.label :file, "Fichier CSV" %>
+        <%= f.label :file, "Fichier CSV", class:"mt-3" %>
         <%= f.file_field :file, class:"form-control-file", required: true %>
     </div>
-    <%= f.submit "Ok", class:"pr-3 pl-3 pt-1 pb-1" %>
+    <%= f.submit "Ok", class:"validate-btn" %>
   <% end %>
 </div>

@@ -1,4 +1,4 @@
-a.rtrn-btn {
+.validate-btn {
   background-color: #EBF2FA;
   border: 1px solid black;
   border-radius: 5px;
@@ -9,7 +9,6 @@ a.rtrn-btn {
   padding-left: 16px;
   padding-right: 16px;
   text-decoration: none !important;
-  color: black;
   display: flex;
-  width: 80px;
+  width: auto;
 }

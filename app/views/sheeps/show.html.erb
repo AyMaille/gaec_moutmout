@@ -16,5 +16,11 @@
       <%= "Status : #{@sheep.translated_status}" %>
     </div>
   </div>
+  <div class="comment-sheep-card">
+    <% @comments.each do |comment| %>
+    <%= comment.content %>
+    <% end %>
+  </div>
+    <%= link_to "commentaire", new_sheep_comment_path(@sheep), class:"validation-btn" %>
     <%= link_to "retour", :back, class:"rtrn-btn" %>
 </div>

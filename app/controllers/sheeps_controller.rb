@@ -10,6 +10,7 @@ class SheepsController < ApplicationController
 
   def show
     @sheep = Sheep.find(params[:id])
+    @comments = Comment.where(sheep_id: @sheep)
   end
 
   def new

@@ -59,3 +59,16 @@
   height: 100px;
   margin: 0px;
 }
+
+.comment-sheep-card {
+  margin-top: 16px;
+  height: 300px;
+  display: flex;
+  flex-flow: row wrap;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  background-color: #EBF2FA;
+  border-radius: 5px;
+  border: 1px solid black;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  position: relative;
+}

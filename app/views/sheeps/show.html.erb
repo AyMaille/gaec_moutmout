@@ -18,9 +18,11 @@
   </div>
   <div class="comment-sheep-card">
     <% @comments.each do |comment| %>
+    <%= comment.name %>
+    <%= comment.type %>
     <%= comment.content %>
     <% end %>
   </div>
-    <%= link_to "commentaire", new_sheep_comment_path(@sheep), class:"validation-btn" %>
+    <%= link_to "commenter", new_sheep_comment_path(@sheep), class:"validation-btn" %>
     <%= link_to "retour", :back, class:"rtrn-btn" %>
 </div>

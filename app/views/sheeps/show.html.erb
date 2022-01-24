@@ -20,7 +20,9 @@
     <% @comments.each do |comment| %>
     <%= comment.name %>
     <%= comment.type %>
-    <%= comment.content %>
+    <div id="comment-content">
+      <%= comment.content %>
+    </div>
     <% end %>
   </div>
     <%= link_to "commenter", new_sheep_comment_path(@sheep), class:"validation-btn" %>

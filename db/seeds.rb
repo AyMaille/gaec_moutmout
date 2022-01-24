@@ -26,7 +26,8 @@ vendeur_user = User.create(
 puts "creating user moutmout"
 User.create!(
   email: "moutmout@gmail.com",
-  password: "123123"
+  password: "123123",
+  name: "Florian"
 )
 
 puts "creating seller field"

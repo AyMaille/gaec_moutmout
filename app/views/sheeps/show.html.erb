@@ -16,15 +16,19 @@
       <%= "Status : #{@sheep.translated_status}" %>
     </div>
   </div>
-  <div class="comment-sheep-card">
-    <% @comments.each do |comment| %>
-    <%= comment.name %>
-    <%= comment.type %>
-    <div id="comment-content">
-      <%= comment.content %>
+  <% @comments.each do |comment| %>
+    <div class="comment-sheep-card">
+      <%= comment.name %>
+      <div id="user_name-content">
+        <%= "#{comment.user_name} #{comment.created_at.strftime("à %H:%M")}," %>
+        <br>
+        <%= "le #{comment.created_at.strftime("%d-%m-%Y")}" %>
+      </div>
+      <div id="comment-content">
+        <%= comment.content %>
+      </div>
     </div>
-    <% end %>
-  </div>
+  <% end %>
     <%= link_to "commenter", new_sheep_comment_path(@sheep), class:"validation-btn" %>
     <%= link_to "retour", :back, class:"rtrn-btn" %>
 </div>

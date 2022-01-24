@@ -1,6 +1,6 @@
 class Sheep < ApplicationRecord
   belongs_to :field
-  has_many :comments
+  has_many :comments, dependent: :destroy
   validates :genre, acceptance: { accept: ["male", "female"] }
   validates :expected_lambs, numericality: { only_integer: true }
   validates :kind, acceptance: { accept: ["ram", "sheep", "lamb"] }

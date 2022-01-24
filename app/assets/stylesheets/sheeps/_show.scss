@@ -62,10 +62,10 @@
 
 .comment-sheep-card {
   margin-top: 16px;
-  padding: 15px;
+  padding: 8px;
   height: auto;
   display: grid;
-  grid-template: 40px 1fr / 1fr 1fr ;
+  grid-template: 48px 1fr / 1fr 1fr ;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   background-color: #EBF2FA;
   border-radius: 5px;
@@ -76,6 +76,11 @@
 }
 
 #comment-content{
-  grid-area: 2 / 1 / 3 / 2;
+  grid-area: 2 / 1 / 3 / span 2;
   font-style: normal;
+}
+
+#user_name-content{
+  grid-column-start: 2;
+  text-align: right;
 }

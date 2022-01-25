@@ -1,19 +1,26 @@
 <div class="contain">
-  <h2 class="mt-3 mb-3">
-    <%= "#{@lot.name}" %>
-  </h2>
-  <div class="moving-lot">
-    <%= button_to "déplacer le lot", edit_lot_path(@lot), method:"get", class:"btn-success" %>
-  </div>
-  <% @sheeps.each do |sheep| %>
-  <div class="sheep-btns">
-        <%= button_to "", sheep_path(sheep.id), method:"get", class:"sheep-links" %>
-        <div class="sheep-informations">
-          <div class="sheep-names">
-            <%= "mouton n° #{sheep.electronic_id}" %>
+  <div class="container">
+    <h2 class="mt-3 mb-3">
+      <%= "#{@lot.name}" %>
+    </h2>
+    <%= button_to "déplacer le lot", edit_lot_path(@lot), method:"get", class:"moving-lot-btn" %>
+    <% @sheeps.each do |sheep| %>
+    <div class="sheep-btns">
+          <%= button_to "", sheep_path(sheep.id), method:"get", class:"sheep-links" %>
+          <div class="sheep-informations">
+            <div class="sheep-names">
+          <div id="sheep-name-part-one">
+            <%= "mouton n°" %>
           </div>
+          <div id="sheep-name-part-two">
+            <%= "#{sheep.electronic_id}" %>
+          </div>
+        </div>
+        <div id="gender-sticker">
           <%= render "shared/gender_sticker", sheep: sheep %>
         </div>
-      </div>
-  <% end %>
+          </div>
+        </div>
+    <% end %>
+  </div>
 </div>

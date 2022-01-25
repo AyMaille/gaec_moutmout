@@ -1,14 +1,23 @@
 <div class="contain">
-  <h1>Tous les moutons</h1>
-  <% @sheeps.each do |sheep|%>
-    <div class="sheep-btns">
-      <%= button_to "", sheep_path(sheep.id), method:"get", class:"sheep-links" %>
-      <div class="sheep-informations">
-        <div class="sheep-names">
-          <%= "mouton n° #{sheep.electronic_id}" %>
+  <div class="container">
+    <h1>Tous les moutons</h1>
+    <% @sheeps.each do |sheep|%>
+      <div class="sheep-btns">
+        <%= button_to "", sheep_path(sheep.id), method:"get", class:"sheep-links" %>
+        <div class="sheep-informations">
+          <div class="sheep-names">
+            <div id="sheep-name-part-one">
+              <%= "mouton n°" %>
+            </div>
+            <div id="sheep-name-part-two">
+              <%= "#{sheep.electronic_id}" %>
+            </div>
+          </div>
+          <div id="gender-sticker">
+            <%= render "shared/gender_sticker", sheep: sheep %>
+          </div>
         </div>
-        <%= render "shared/gender_sticker", sheep: sheep %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

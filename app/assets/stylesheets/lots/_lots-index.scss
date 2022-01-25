@@ -1,3 +1,33 @@
+#lot-index-top-box{
+  width: 100%;
+  height: 100px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 100%;
+  grid-template-rows: 1fr 1fr;
+  margin-bottom: 15px;
+}
+
+#lots-title{
+  grid-column-start: 1;
+  width: 100%;
+}
+
+#new-lot-btn{
+  grid-column-start: 2;
+  background-color: #EBF2FA;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  text-decoration: none !important;
+  width: 100%;
+}
+
 .lot-btn{
   position: relative;
   width: 100%;
@@ -14,7 +44,7 @@
 }
 
 .lot-link {
-  width: 330px;
+  width: 100%;
   height: 100px;
   padding: 10px;
   text-align: left;
@@ -26,33 +56,35 @@
 }
 
 .lot-informations {
-  width: 330px;
+  width: 100%;
   height: 100px;
   position: relative;
   z-index: 5;
-  display: flex;
+  display: grid;
+  grid-template-columns: 30% 30% 40%;
   align-items: center;
 }
 
 .lot-name {
-  position: relative;
+  grid-column-start: 1;
   z-index: 5;
   text-align: center;
   overflow: hidden;
-  width: 115px;
+  width: auto;
   font-weight:normal !important;
 }
 
 .lot-position{
-  position: relative;
+  grid-column-start: 2;
   z-index: 5;
   margin-left: 15px;
-  width: 100px;
+  width: auto;
   opacity: 0.7;
 }
 
 .lot-sheep-number{
-  position: relative;
+  grid-column-start: 3;
+  width: auto;
   margin-left: 15px;
   z-index: 5;
   text-align: center;

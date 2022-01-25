@@ -1,19 +1,25 @@
 <div class="contain">
-  <h1><%= "#{@field.name}" %></h1>
-  <p>listes des moutons</p>
-    <div class="new-top-btns">
-      <%= button_to "Naissance", new_field_sheep_path(@field), method:"get", class:"btn-success pl-3 pr-3" %>
-    </div>
-      <% @sheeps.each do |sheep|%>
-      <div class="sheep-btns">
-        <%= button_to "", sheep_path(sheep.id), method:"get", class:"sheep-links" %>
-        <div class="sheep-informations">
-          <div class="sheep-names">
-            <%= "mouton n° #{sheep.electronic_id}" %>
+  <div class="container">
+    <h1><%= "#{@field.name}" %></h1>
+    <%= button_to "Naissance", new_field_sheep_path(@field), method:"get", class:"naissance-btn mt-3 mb-5" %>
+    <% @sheeps.each do |sheep|%>
+    <div class="sheep-btns">
+      <%= button_to "", sheep_path(sheep.id), method:"get", class:"sheep-links" %>
+      <div class="sheep-informations">
+        <div class="sheep-names">
+          <div id="sheep-name-part-one">
+            <%= "mouton n°" %>
           </div>
+          <div id="sheep-name-part-two">
+            <%= "#{sheep.electronic_id}" %>
+          </div>
+        </div>
+        <div id="gender-sticker">
           <%= render "shared/gender_sticker", sheep: sheep %>
         </div>
       </div>
-      <% end %>
+    </div>
+    <% end %>
     <%= link_to "retour", root_path , class:"rtrn-btn"%>
+  </div>
 </div>

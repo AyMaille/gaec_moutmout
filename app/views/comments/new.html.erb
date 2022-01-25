@@ -1,9 +1,11 @@
 <div class="contain">
-  <h1>Ajouter un commentaire</h1>
-  <%= simple_form_for :comment, url: sheep_comments_path do |f| %>
-  <%= f.input :name, label:"nom" %>
-  <%= f.input :content, label:"message", as: :text %>
+  <div class="container">
+    <h1>Ajouter un commentaire</h1>
+    <%= simple_form_for :comment, url: sheep_comments_path do |f| %>
+    <%= f.input :name, label:"nom" %>
+    <%= f.input :content, label:"message", as: :text %>
 
-  <%= f.submit "Valider", class: "validate-btn" %>
-<% end %>
+    <%= f.submit "Valider", class: "validate-btn" %>
+  <% end %>
+  </div>
 </div>

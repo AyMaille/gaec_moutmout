@@ -1,17 +1,19 @@
 <div class="contain">
-  <h1>Nouveau Lot</h1>
+  <div class="container">
+    <h1>Nouveau Lot</h1>
 
-  <%= form_for @lot, url: lots_path do |f| %>
-    <div class="form-group">
-        <%= f.label "Nom du lot" %>
-        <%= f.text_field :name, class:"mt-3 ml-2" %>
-        <br>
-        <%= f.label "Parcelle", class:"mr-4" %>
-        <%= f.select :field, collection: @fields.map! { |field| field.name } %>
-        <br>
-        <%= f.label :file, "Fichier CSV", class:"mt-3" %>
-        <%= f.file_field :file, class:"form-control-file", required: true %>
-    </div>
-    <%= f.submit "Ok", class:"validate-btn" %>
-  <% end %>
+    <%= form_for @lot, url: lots_path do |f| %>
+      <div class="form-group">
+          <%= f.label "Nom du lot" %>
+          <%= f.text_field :name %>
+          <br>
+          <%= f.label "Parcelle" %>
+          <%= f.select :field, collection: @fields.map! { |field| field.name } %>
+          <br>
+          <%= f.label :file, "Fichier CSV" %>
+          <%= f.file_field :file, class:"form-control-file", required: true %>
+      </div>
+      <%= f.submit "Ok", class:"validate-btn" %>
+    <% end %>
+  </div>
 </div>

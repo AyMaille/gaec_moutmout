@@ -1,0 +1,19 @@
+@media screen and (max-width: 640px) {
+  .container{
+    width: 100% !important;
+    height: 100vh !important;
+    overflow: auto !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+    margin-right: none !important;
+    margin-left: none !important;
+    background-color: #A4BD01 !important;
+
+  }
+}
+
+@media screen {
+  .container {
+    width: 80%;
+  }
+}

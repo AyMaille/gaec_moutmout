@@ -1,9 +1,11 @@
 <div class="contain">
-  <h1 class="d-flex">Bienvenue au Gaec moutmout</h1>
-  <p class="d-flex justify-content-center">Ensemble, comptons les moutons</p>
+  <div class="container">
+    <h1 class="d-flex justify-content-center">Bienvenue,</h1>
+    <p class="d-flex justify-content-center">Ensemble, comptons les moutons</p>
 
-  <%= button_to "Mes parcelles", fields_path, method:"get", class:"main-btns justify-content-center"%>
-  <%= button_to "Mes lots", lots_path, method:"get", class:"main-btns justify-content-center"%>
-  <%= button_to "Mes moutons", sheeps_path, method:"get", class:"main-btns justify-content-center"%>
+    <%= button_to "Mes parcelles", fields_path, method:"get", class:"main-btns justify-content-center"%>
+    <%= button_to "Mes lots", lots_path, method:"get", class:"main-btns justify-content-center"%>
+    <%= button_to "Mes moutons", sheeps_path, method:"get", class:"main-btns justify-content-center"%>
 
+  </div>
 </div>

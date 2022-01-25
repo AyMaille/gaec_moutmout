@@ -1,34 +1,35 @@
 <div class="contain">
-  <div class="info-sheep-card">
-    <div class="sheep-name">
-      <%= "mouton n°#{@sheep.electronic_id}" %>
+  <div class="container">
+    <div class="info-sheep-card">
+      <div class="sheep-name">
+        <%= "mouton n°#{@sheep.electronic_id}" %>
+      </div>
+      <div class="sheep-genre">
+        <%= @sheep.genre == "female" ? "femelle" : "mâle" %>
+      </div>
+      <div class="sheep-age">
+        <%= "#{@sheep.age} mois" %>
+      </div>
+      <div class="sheep-weight">
+        <%= "#{@sheep.weight} Kg" %>
+      </div>
+      <div class="sheep-status">
+        <%= "Status : #{@sheep.translated_status}" %>
+      </div>
     </div>
-    <div class="sheep-genre">
-      <%= @sheep.genre == "female" ? "femelle" : "mâle" %>
-    </div>
-    <div class="sheep-age">
-      <%= "#{@sheep.age} mois" %>
-    </div>
-    <div class="sheep-weight">
-      <%= "#{@sheep.weight} Kg" %>
-    </div>
-    <div class="sheep-status">
-      <%= "Status : #{@sheep.translated_status}" %>
-    </div>
+    <% @comments.each do |comment| %>
+      <div class="comment-sheep-card">
+        <%= comment.name %>
+        <div id="user_name-content">
+          <%= "#{comment.user_name} #{comment.created_at.strftime("à %H:%M")}," %>
+          <br>
+          <%= "le #{comment.created_at.strftime("%d-%m-%Y")}" %>
+        </div>
+        <div id="comment-content">
+          <%= comment.content %>
+        </div>
+      </div>
+    <% end %>
+      <%= link_to "commenter", new_sheep_comment_path(@sheep), class:"validation-btn" %>
   </div>
-  <% @comments.each do |comment| %>
-    <div class="comment-sheep-card">
-      <%= comment.name %>
-      <div id="user_name-content">
-        <%= "#{comment.user_name} #{comment.created_at.strftime("à %H:%M")}," %>
-        <br>
-        <%= "le #{comment.created_at.strftime("%d-%m-%Y")}" %>
-      </div>
-      <div id="comment-content">
-        <%= comment.content %>
-      </div>
-    </div>
-  <% end %>
-    <%= link_to "commenter", new_sheep_comment_path(@sheep), class:"validation-btn" %>
-    <%= link_to "retour", :back, class:"rtrn-btn" %>
 </div>

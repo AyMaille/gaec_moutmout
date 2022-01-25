@@ -1,10 +1,11 @@
 <div class="contain">
-  <h2 class="pt-3">Déclarer une nouvelle naissance</h2>
-  <%= simple_form_for [@field, @sheep], url: field_sheeps_path do |f| %>
-    <%= f.input :genre, collection: ["male", "female"], label: "Sexe" %>
-    <%= f.input :weight, selected: 4, collection: 0..50, label: "Poids (Kg)" %>
-    <%= f.input :mother_id, collection: @sheeps.map! { |sheep| "n° #{sheep.electronic_id}" }, label: "Mère n°"%>
-    <%= f.submit "Valider", class: "validate-btn" %>
-  <% end %>
-  <%= link_to "retour", field_path(@field) , class:"rtrn-btn"%>
+  <div class="container">
+    <h2 class="pt-3">Déclarer une nouvelle naissance</h2>
+    <%= simple_form_for [@field, @sheep], url: field_sheeps_path do |f| %>
+      <%= f.input :genre, collection: ["male", "female"], label: "Sexe" %>
+      <%= f.input :weight, selected: 4, collection: 0..50, label: "Poids (Kg)" %>
+      <%= f.input :mother_id, collection: @sheeps.map! { |sheep| "n° #{sheep.electronic_id}" }, label: "Mère n°"%>
+      <%= f.submit "Valider", class: "validate-btn" %>
+    <% end %>
+  </div>
 </div>

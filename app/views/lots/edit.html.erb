@@ -1,9 +1,11 @@
 <div class="contain">
-  <h1>
-    Où voulez-vous déplacer le lot?
-  </h1>
-  <%= simple_form_for @lot do |f| %>
-    <%= f.association :field, collection: @fields.pluck(:name), label: "Parcelle" %>
-    <%= f.button :submit, 'déplacer', class: "validate-btn" %>
-  <% end %>
+  <div class="container">
+    <h1>
+      Où voulez-vous déplacer le lot?
+    </h1>
+    <%= simple_form_for @lot do |f| %>
+      <%= f.association :field, collection: @fields.pluck(:name), label: "Parcelle" %>
+      <%= f.button :submit, 'déplacer', class: "validate-btn" %>
+    <% end %>
+  </div>
 </div>

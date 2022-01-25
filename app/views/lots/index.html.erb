@@ -1,8 +1,9 @@
 <div class="contain">
-  <H1>Lots</H1>
-  <div class="new-top-btns">
-    <%= button_to "Nouveau lot", new_lot_path, method:"get", class:"btn-success" %>
-  </div>
+  <div class="container">
+    <div id="lot-index-top-box">
+      <H1 id="lots-title">Lots</H1>
+      <%= button_to "Nouveau lot", new_lot_path, method:"get", id:"new-lot-btn" %>
+    </div>
     <% @lots.each do |lot|%>
       <div class="lot-btn">
         <%= button_to "#{lot.name}", lot_path(lot.id), method:"get", class:"lot-link" %>
@@ -24,5 +25,4 @@
       </div>
     <% end %>
   </div>
-  <%= link_to "retour", root_path , class:"rtrn-btn"%>
 </div>

@@ -1,5 +1,6 @@
 import mapboxgl from 'mapbox-gl'
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
+import { config } from '../constants'
 // import 'mapbox-gl/dist/mapbox-gl.css';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYXltZXJpYzIzIiwiYSI6ImNrcnlvcmZvMTBreHUydm1yc2w4ZGN4MnQifQ.nWPJUbTLTBJwO7Y6TchQnw';
@@ -34,8 +35,9 @@ element.addEventListener("click", async (event) => {
   console.log("field_id inside field drawing", fieldId)
   const drawData = draw.getAll();
   const drawPoints = drawData.features[0].geometry.coordinates[0];
+  var url_create_corner_positions = config.url.API_URL_CREATE_CORNER_POSITIONS
   drawPoints.forEach((point) => {
-    fetch("http://localhost:3000/corner_positions", {
+    fetch(url_create_corner_positions, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

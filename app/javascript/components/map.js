@@ -84,7 +84,6 @@ fieldPoints.forEach((field) => {
   });
   let pointsCollection = turf.featureCollection(fieldPoints)
   let feature = turf.convex(pointsCollection)
-  // console.log(feature)
   map.on('load', () => {
     map.addSource(fieldId.toString(), {
       type: 'geojson',

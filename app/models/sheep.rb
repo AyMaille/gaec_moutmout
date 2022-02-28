@@ -21,6 +21,17 @@ class Sheep < ApplicationRecord
     end
   end
 
+  def current_age
+    time_diff = (Time.current - self.created_at)
+    result = (time_diff / 1.month).round
+    if result < 1
+      result = "< 1"
+    else
+      result
+    end
+    result
+  end
+
   def self.import(file, field)
     CSV.foreach(file.path, headers: true) do |row|
       if Sheep.find_by(electronic_id: row[0]).nil?

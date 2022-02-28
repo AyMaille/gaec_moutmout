@@ -5,13 +5,15 @@
         <%= "mouton n°#{@sheep.electronic_id}" %>
       </div>
       <div class="sheep-genre">
-        <%= @sheep.genre == "female" ? "femelle" : "mâle" %>
+        <%= @sheep.genre == "female" ? "sexe : femelle" : "sexe : mâle" %>
       </div>
       <div class="sheep-age">
-        <%= "#{@sheep.age} mois" %>
+        <%= "age :" %>
+        <br/>
+        <%= "#{@sheep.current_age} mois" %>
       </div>
       <div class="sheep-weight">
-        <%= "#{@sheep.weight} Kg" %>
+        <%= "poids : #{@sheep.weight} Kg" %>
       </div>
       <div class="sheep-status">
         <%= "Status : #{@sheep.translated_status}" %>
